@@ -19,6 +19,8 @@ export function reducer(timers, action) {
 function newTimer(inputObj) {
 	return {
 		id: uuid(),
+		isActive: false,
+		currentTime: inputObj.time,
 		...inputObj
 	};
 }
