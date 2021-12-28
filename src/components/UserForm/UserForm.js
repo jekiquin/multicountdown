@@ -3,10 +3,12 @@ import { v4 as uuid } from 'uuid';
 import { ATTRIBUTES } from 'data/user-input-attributes';
 import { ACTIONS } from 'reducer/reducer';
 import { convertToSeconds } from 'utils/timer-format';
+import { useDispatch } from 'hoc/ContextProvider';
 import UserInput from 'components/UserInput/UserInput';
 
-export default function UserForm({ dispatch }) {
+export default function UserForm() {
 	const [isInputReset, setIsInputReset] = useState(false);
+	const dispatch = useDispatch();
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const time = convertToSeconds(
@@ -14,7 +16,6 @@ export default function UserForm({ dispatch }) {
 			e.target.minutes.value,
 			e.target.seconds.value
 		);
-
 		time &&
 			dispatch({
 				type: ACTIONS.ADD_TIMER,
