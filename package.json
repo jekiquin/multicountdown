@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.5",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.5",
     "sass": "^1.45.1",

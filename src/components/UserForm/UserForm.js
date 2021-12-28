@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import UserInput from 'components/UserInput/UserInput';
 import { ATTRIBUTES } from 'data/user-input-attributes';
+import { ACTIONS } from 'reducer/reducer';
+import UserInput from 'components/UserInput/UserInput';
 
-export default function UserForm() {
+export default function UserForm({ dispatch }) {
 	const [isInputReset, setIsInputReset] = useState(false);
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(
-			e.target.timer.value,
-			e.target.hours.value,
-			e.target.minutes.value,
-			e.target.seconds.value
-		);
+		dispatch({
+			type: ACTIONS.ADD_TIMER,
+			payload: {
+				name: e.target.timer.value,
+				hours: e.target.hours.value,
+				minutes: e.target.minutes.value,
+				seconds: e.target.seconds.value
+			}
+		});
 		setIsInputReset(true);
 	};
 
