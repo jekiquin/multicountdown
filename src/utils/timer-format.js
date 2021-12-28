@@ -9,7 +9,11 @@ export function timeFormatFromSeconds(inputSeconds) {
 	const hours = inputSeconds / HR_TO_SEC;
 	const minutes = (hours % 1) * 60;
 	const seconds = (minutes % 1) * 60;
-	return `${Math.floor(hours).padStart('0')}:${Math.floor(minutes).padStart('0')}:${Math.floor(
-		seconds
-	).padStart('0')}`;
+	return `${formatTime(Math.floor(hours))}:${formatTime(Math.floor(minutes))}:${formatTime(
+		Math.round(seconds)
+	)}`;
+}
+
+function formatTime(input) {
+	return input.toString().padStart(2, '0');
 }
