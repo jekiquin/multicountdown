@@ -2,7 +2,7 @@ import UserForm from 'components/UserForm/UserForm';
 
 function App() {
 	return (
-		<div className="App">
+		<div className="App container mx-auto">
 			<UserForm />
 		</div>
 	);

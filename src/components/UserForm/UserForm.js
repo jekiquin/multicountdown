@@ -27,9 +27,16 @@ export default function UserForm() {
 
 	return (
 		<section>
-			<form onSubmit={handleSubmit} autoComplete="false">
-				{displayInputs}
-				<button type="submit">Set Time</button>
+			<form
+				className="flex flex-col p-4 md:items-end"
+				onSubmit={handleSubmit}
+				autoComplete="false">
+				<div className="w-full container flex flex-col justify-items-stretch gap-4 md:flex-row">
+					{displayInputs}
+				</div>
+				<button className="w-fit p-4 my-4 border rounded-xl" type="submit">
+					Set Time
+				</button>
 			</form>
 		</section>
 	);

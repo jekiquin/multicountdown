@@ -17,9 +17,12 @@ export default function UserInput({ timerAttributes, isInputReset, setIsInputRes
 	};
 
 	return (
-		<div className="flex flex-col">
-			<label htmlFor={id}>{id.toUpperCase()}</label>
+		<div className="flex-grow flex md:flex-col">
+			<label className="w-24" htmlFor={id}>
+				{id.toUpperCase()}
+			</label>
 			<input
+				className="w-full border rounded-md px-2"
 				type={type}
 				id={id}
 				name={id}
