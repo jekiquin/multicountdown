@@ -2,7 +2,7 @@ const MIN_TO_SEC = 60;
 const HR_TO_SEC = 3600;
 
 export function convertToSeconds(hours = 0, minutes = 0, seconds = 0) {
-	return parseInt(seconds) + parseInt(minutes) * MIN_TO_SEC + parseInt(hours) * HR_TO_SEC;
+	return Number(seconds) + Number(minutes) * MIN_TO_SEC + Number(hours) * HR_TO_SEC;
 }
 
 export function timeFormatFromSeconds(inputSeconds) {

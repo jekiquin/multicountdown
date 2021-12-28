@@ -15,14 +15,14 @@ export const ATTRIBUTES = [
 	},
 	{
 		id: 'minutes',
-		maxNumber: 60,
+		maxNumber: 59,
 		maxLength: null,
 		type: 'number',
 		defaultValue: '0'
 	},
 	{
 		id: 'seconds',
-		maxNumber: 60,
+		maxNumber: 59,
 		maxLength: null,
 		type: 'number',
 		defaultValue: '0'

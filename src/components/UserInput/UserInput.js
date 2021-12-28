@@ -29,6 +29,7 @@ export default function UserInput({ timerAttributes, isInputReset, setIsInputRes
 				min={maxNumber ? 0 : null}
 				max={maxNumber?.toString()}
 				maxLength={maxLength?.toString()}
+				step="1"
 				value={value}
 				onChange={onChangeHandler}
 			/>
