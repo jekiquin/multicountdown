@@ -38,7 +38,7 @@ export default function UserForm() {
 	return (
 		<section>
 			<form
-				className="flex flex-col p-4 md:items-end"
+				className="flex flex-col p-4 max-w-2xl mx-auto md:items-end"
 				onSubmit={handleSubmit}
 				autoComplete="false">
 				<div className="w-full container flex flex-col justify-items-stretch gap-4 md:flex-row">
