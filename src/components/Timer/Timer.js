@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react/cjs/react.development';
 import { deleteTimer } from 'reducer/reducer';
 import { useTimers } from 'hoc/ContextProvider';
-import { timeFormatFromSeconds } from 'utils/timer-format';
 import { useRef } from 'react';
 import ButtonContainer from 'components/ButtonContainer/ButtonContainer';
+import TimerCtx from 'components/TimerCtx/TimerCtx';
 
 const INTERVAL = 1000;
 export default function Timer({ timer }) {
@@ -45,19 +45,16 @@ export default function Timer({ timer }) {
 	};
 
 	const playButton = isActive ? 'pause' : 'play';
-	const bgColor = isActive ? 'bg-green-100' : 'bg-gray-100';
+	const addBg = isActive ? 'bg-green-200' : 'bg-gray-200';
 	const orderStyle = isActive ? { order: currentTime } : null;
+	const widthStyle = { width: `${(currentTime / timer.time) * 100}%` };
 
 	return (
 		<div
-			className={`p-4 border rounded-xl w-11/12 max-w-2xl container mx-auto flex flex-wrap gap-4 justify-between order-last  order-last ${bgColor}`}
+			className="relative p-4 border rounded-xl w-11/12 max-w-2xl container mx-auto overflow-hidden order-last flex flex-wrap gap-4 justify-between"
 			style={orderStyle}>
-			<div>
-				<h2>{timer.name}</h2>
-				<p>
-					{timeFormatFromSeconds(currentTime)} | {timeFormatFromSeconds(timer.time)}
-				</p>
-			</div>
+			<div className={`absolute top-0 left-0 h-full ${addBg} -z-10`} style={widthStyle}></div>
+			<TimerCtx timerName={timer.name} totalTime={timer.time} currentTime={currentTime} />
 			<ButtonContainer
 				playButton={playButton}
 				handlePlay={handlePlay}
