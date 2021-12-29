@@ -5,5 +5,5 @@ export default function ArchiveContainer() {
 	const { archives } = useArchives();
 
 	const displayArchives = archives.map((archive) => <Archive key={archive.id} timer={archive} />);
-	return <section className="mt-6 flex flex-col gap-6">{displayArchives}</section>;
+	return <section className="mt-6 timer-container">{displayArchives}</section>;
 }

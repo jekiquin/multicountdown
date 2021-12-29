@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.timer {
+		@apply relative p-4 border rounded-xl w-11/12 max-w-2xl container mx-auto overflow-hidden order-last flex flex-wrap gap-4 justify-between;
+	}
+
+	.timer-container {
+		@apply flex flex-col gap-6;
+	}
+}

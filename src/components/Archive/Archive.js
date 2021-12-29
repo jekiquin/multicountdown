@@ -18,7 +18,7 @@ export default function Archive({ timer }) {
 	};
 
 	return (
-		<div className="relative p-4 border rounded-xl w-11/12 max-w-2xl container mx-auto overflow-hidden order-last flex flex-wrap gap-4 justify-between">
+		<div className="timer">
 			<TimerCtx timerName={timer.name} totalTime={timer.time} currentTime={0} />
 			<ButtonContainer
 				handleReset={handleReset}
