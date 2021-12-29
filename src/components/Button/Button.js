@@ -9,7 +9,7 @@ export default function Button({ label, handleClick, disabled }) {
 	addBg = label === 'delete' ? 'bg-red-200' : addBg;
 	return (
 		<button
-			className={`p-3 w-10 ${addBg} rounded-xl ${addHover}`}
+			className={`p-3 w-10 h-10 ${addBg} rounded-xl ${addHover}`}
 			onClick={handleClick}
 			disabled={disabled}>
 			<img className="w-full" src={src} alt={alt} />

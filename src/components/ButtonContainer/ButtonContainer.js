@@ -5,7 +5,7 @@ export default function ButtonContainer(props) {
 	const { playButton, handlePlay, handleReset, handleDelete, disabled } = props;
 
 	return (
-		<div>
+		<div className="flex gap-2">
 			<Button label={playButton} handleClick={handlePlay} disabled={disabled} />
 			<Button label="reset" handleClick={handleReset} />
 			<Button label="delete" handleClick={handleDelete} />

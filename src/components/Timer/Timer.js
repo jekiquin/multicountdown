@@ -50,7 +50,7 @@ export default function Timer({ timer }) {
 
 	return (
 		<div
-			className={`w-11/12 max-w-2xl container mx-auto flex justify-between order-last p-4 border rounded-xl order-last ${bgColor}`}
+			className={`p-4 border rounded-xl w-11/12 max-w-2xl container mx-auto flex flex-wrap gap-4 justify-between order-last  order-last ${bgColor}`}
 			style={orderStyle}>
 			<div>
 				<h2>{timer.name}</h2>
