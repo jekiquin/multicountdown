@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react/cjs/react.development';
-import { deleteTimer } from 'reducer/reducer';
-import { useTimers } from 'hoc/ContextProvider';
+import { deleteTimer, addTimer } from 'reducer/reducer';
+import { useArchives, useTimers } from 'hoc/ContextProvider';
 import { useRef } from 'react';
 import ButtonContainer from 'components/ButtonContainer/ButtonContainer';
 import TimerCtx from 'components/TimerCtx/TimerCtx';
@@ -9,6 +9,7 @@ import TimerCtx from 'components/TimerCtx/TimerCtx';
 const INTERVAL = 1000;
 export default function Timer({ timer }) {
 	const { dispatch } = useTimers();
+	const { archiveDispatch } = useArchives();
 	const [currentTime, setCurrentTime] = useState(timer.time);
 	const [isActive, setIsActive] = useState(false);
 
@@ -23,6 +24,8 @@ export default function Timer({ timer }) {
 				if (!currentTime) {
 					setIsActive(false);
 					clearInterval(timerInterval.current);
+					archiveDispatch(addTimer(timer));
+					dispatch(deleteTimer(timer.id));
 				}
 			}, INTERVAL);
 		}

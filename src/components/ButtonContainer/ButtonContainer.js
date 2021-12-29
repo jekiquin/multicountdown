@@ -6,7 +6,9 @@ export default function ButtonContainer(props) {
 
 	return (
 		<div className="flex gap-2">
-			<Button label={playButton} handleClick={handlePlay} disabled={disabled} />
+			{playButton !== null && (
+				<Button label={playButton} handleClick={handlePlay} disabled={disabled} />
+			)}
 			<Button label="reset" handleClick={handleReset} />
 			<Button label="delete" handleClick={handleDelete} />
 		</div>
@@ -14,9 +16,14 @@ export default function ButtonContainer(props) {
 }
 
 ButtonContainer.propTypes = {
-	playButton: PropTypes.string.isRequired,
+	playButton: PropTypes.string,
 	disabled: PropTypes.bool.isRequired,
-	handlePlay: PropTypes.func.isRequired,
+	handlePlay: PropTypes.func,
 	handleReset: PropTypes.func.isRequired,
 	handleDelete: PropTypes.func.isRequired
+};
+
+ButtonContainer.defaultProps = {
+	playButton: null,
+	handlePlay: null
 };

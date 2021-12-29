@@ -8,7 +8,7 @@ export function useTimers() {
 	return useContext(TimerContext);
 }
 
-export function useArchive() {
+export function useArchives() {
 	return useContext(ArchiveContext);
 }
 
