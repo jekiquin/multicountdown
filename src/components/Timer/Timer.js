@@ -4,6 +4,7 @@ import { deleteTimer } from 'reducer/reducer';
 import { useTimers } from 'hoc/ContextProvider';
 import { timeFormatFromSeconds } from 'utils/timer-format';
 import { useRef } from 'react';
+import Button from 'components/Button/Button';
 
 const INTERVAL = 1000;
 export default function Timer({ timer }) {
@@ -18,6 +19,7 @@ export default function Timer({ timer }) {
 			timerInterval.current = setInterval(() => {
 				if (!currentTime) {
 					clearInterval(timerInterval.current);
+					setIsActive(false);
 				}
 				if (currentTime) {
 					setCurrentTime((prevTime) => prevTime - 1);
@@ -25,7 +27,6 @@ export default function Timer({ timer }) {
 			}, INTERVAL);
 		}
 		return () => {
-			console.log('cleared');
 			clearInterval(timerInterval.current);
 		};
 	}, [isActive, currentTime]);
@@ -55,15 +56,9 @@ export default function Timer({ timer }) {
 				<p>{timeFormatFromSeconds(currentTime)}</p>
 			</div>
 			<div>
-				<button className="p-4 hover:bg-blue-200" onClick={handlePlay}>
-					{playButton}
-				</button>
-				<button className="p-4 hover:bg-blue-200" onClick={handleReset}>
-					Reset
-				</button>
-				<button className="p-4 hover:bg-blue-200" onClick={handleDelete}>
-					Delete
-				</button>
+				<Button label={playButton} handleClick={handlePlay} />
+				<Button label="Reset" handleClick={handleReset} />
+				<Button label="Delete" handleClick={handleDelete} />
 			</div>
 		</div>
 	);
