@@ -1,37 +1,37 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react/cjs/react.development';
-import { deleteTimer, setActive, resetTimer, countdown } from 'reducer/reducer';
+import { deleteTimer } from 'reducer/reducer';
 import { useTimers } from 'hoc/ContextProvider';
 import { timeFormatFromSeconds } from 'utils/timer-format';
+import { useRef } from 'react';
 
 const INTERVAL = 1000;
 export default function Timer({ timer }) {
 	const { dispatch } = useTimers();
-	const [currentTime, setCurrentTime] = useState(timer.currentTime);
-	const [isActive, setIsActive] = useState(timer.isActive);
+	const [currentTime, setCurrentTime] = useState(timer.time);
+	const [isActive, setIsActive] = useState(false);
+
+	const timerInterval = useRef();
 
 	useEffect(() => {
-		let timerInterval;
-
-		timerInterval = setInterval(() => {
-			if (!currentTime) {
-				clearInterval(timerInterval);
-				dispatch(deleteTimer(timer.id));
-			}
-			if (isActive && currentTime) {
-				setCurrentTime((prevTime) => prevTime - 1);
-				dispatch(countdown(timer.id));
-			}
-		}, INTERVAL);
-
+		if (isActive) {
+			timerInterval.current = setInterval(() => {
+				if (!currentTime) {
+					clearInterval(timerInterval.current);
+				}
+				if (currentTime) {
+					setCurrentTime((prevTime) => prevTime - 1);
+				}
+			}, INTERVAL);
+		}
 		return () => {
-			clearInterval(timerInterval);
+			console.log('cleared');
+			clearInterval(timerInterval.current);
 		};
-	});
+	}, [isActive, currentTime]);
 
 	const handlePlay = () => {
-		dispatch(setActive(timer.id, !isActive));
-		setIsActive((prevIsActive) => !prevIsActive);
+		setIsActive((prevState) => !prevState);
 	};
 
 	const handleDelete = () => {
@@ -41,8 +41,6 @@ export default function Timer({ timer }) {
 	const handleReset = () => {
 		setIsActive(false);
 		setCurrentTime(timer.time);
-		dispatch(setActive(timer.id, false));
-		dispatch(resetTimer(timer.id));
 	};
 
 	const playButton = isActive ? 'Pause' : 'Play';
