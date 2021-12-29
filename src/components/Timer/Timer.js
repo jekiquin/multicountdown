@@ -32,7 +32,7 @@ export default function Timer({ timer }) {
 		return () => {
 			clearInterval(timerInterval.current);
 		};
-	}, [isActive, currentTime]);
+	}, [isActive, currentTime, archiveDispatch, dispatch, timer]);
 
 	const handlePlay = () => {
 		setIsActive((prevState) => !prevState);
