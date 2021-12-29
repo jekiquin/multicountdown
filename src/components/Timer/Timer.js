@@ -57,13 +57,13 @@ export default function Timer({ timer }) {
 				<p>{timeFormatFromSeconds(currentTime)}</p>
 			</div>
 			<div>
-				<button className="border p-4 hover:bg-blue-200" onClick={handlePlay}>
+				<button className="p-4 hover:bg-blue-200" onClick={handlePlay}>
 					{playButton}
 				</button>
-				<button className="border p-4 hover:bg-blue-200" onClick={handleReset}>
+				<button className="p-4 hover:bg-blue-200" onClick={handleReset}>
 					Reset
 				</button>
-				<button className="border p-4 hover:bg-blue-200" onClick={handleDelete}>
+				<button className="p-4 hover:bg-blue-200" onClick={handleDelete}>
 					Delete
 				</button>
 			</div>
