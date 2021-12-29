@@ -45,25 +45,25 @@ export default function Timer({ timer }) {
 		dispatch(resetTimer(timer.id));
 	};
 
-	const timerStyle = isActive ? { order: currentTime } : null;
 	const playButton = isActive ? 'Pause' : 'Play';
+	const bgColor = isActive ? 'bg-green-100' : 'bg-gray-100';
 
 	return (
 		<div
-			className="w-11/12 max-w-2xl container mx-auto flex justify-between order-last"
-			style={timerStyle}>
+			className={`w-11/12 max-w-2xl container mx-auto flex justify-between order-last p-4 border rounded-xl ${bgColor}`}
+			style={{ order: currentTime }}>
 			<div>
 				<h2>{timer.name}</h2>
 				<p>{timeFormatFromSeconds(currentTime)}</p>
 			</div>
 			<div>
-				<button className="border" onClick={handlePlay}>
+				<button className="border p-4 hover:bg-blue-200" onClick={handlePlay}>
 					{playButton}
 				</button>
-				<button className="border" onClick={handleReset}>
+				<button className="border p-4 hover:bg-blue-200" onClick={handleReset}>
 					Reset
 				</button>
-				<button className="border" onClick={handleDelete}>
+				<button className="border p-4 hover:bg-blue-200" onClick={handleDelete}>
 					Delete
 				</button>
 			</div>

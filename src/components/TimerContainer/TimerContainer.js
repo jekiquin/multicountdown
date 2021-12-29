@@ -7,5 +7,5 @@ export default function TimerContainer() {
 	console.log(timers);
 
 	const displayTimers = timers.map((timer) => <Timer key={uuid()} timer={timer} />);
-	return <section className="flex flex-col">{displayTimers}</section>;
+	return <section className="flex flex-col gap-6">{displayTimers}</section>;
 }
