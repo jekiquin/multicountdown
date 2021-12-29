@@ -4,7 +4,7 @@ import { deleteTimer } from 'reducer/reducer';
 import { useTimers } from 'hoc/ContextProvider';
 import { timeFormatFromSeconds } from 'utils/timer-format';
 import { useRef } from 'react';
-import Button from 'components/Button/Button';
+import ButtonContainer from 'components/ButtonContainer/ButtonContainer';
 
 const INTERVAL = 1000;
 export default function Timer({ timer }) {
@@ -17,12 +17,12 @@ export default function Timer({ timer }) {
 	useEffect(() => {
 		if (isActive) {
 			timerInterval.current = setInterval(() => {
-				if (!currentTime) {
-					clearInterval(timerInterval.current);
-					setIsActive(false);
-				}
 				if (currentTime) {
 					setCurrentTime((prevTime) => prevTime - 1);
+				}
+				if (!currentTime) {
+					setIsActive(false);
+					clearInterval(timerInterval.current);
 				}
 			}, INTERVAL);
 		}
@@ -44,10 +44,9 @@ export default function Timer({ timer }) {
 		setCurrentTime(timer.time);
 	};
 
-	const playButton = isActive ? 'Pause' : 'Play';
+	const playButton = isActive ? 'pause' : 'play';
 	const bgColor = isActive ? 'bg-green-100' : 'bg-gray-100';
 	const orderStyle = isActive ? { order: currentTime } : null;
-	console.log(currentTime);
 
 	return (
 		<div
@@ -59,11 +58,13 @@ export default function Timer({ timer }) {
 					{timeFormatFromSeconds(currentTime)} | {timeFormatFromSeconds(timer.time)}
 				</p>
 			</div>
-			<div>
-				<Button label={playButton} handleClick={handlePlay} disabled={!currentTime} />
-				<Button label="Reset" handleClick={handleReset} />
-				<Button label="Delete" handleClick={handleDelete} />
-			</div>
+			<ButtonContainer
+				playButton={playButton}
+				handlePlay={handlePlay}
+				handleReset={handleReset}
+				handleDelete={handleDelete}
+				disabled={!currentTime}
+			/>
 		</div>
 	);
 }
