@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import { deleteTimer, addTimer } from 'reducer/reducer';
 import { useArchives, useTimers } from 'hoc/ContextProvider';
 import { useRef } from 'react';
