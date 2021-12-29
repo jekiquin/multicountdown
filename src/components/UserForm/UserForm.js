@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { ATTRIBUTES } from 'data/user-input-attributes';
-import { ACTIONS } from 'reducer/reducer';
 import { convertToSeconds } from 'utils/timer-format';
-import { useDispatch } from 'hoc/ContextProvider';
+import { useTimers } from 'hoc/ContextProvider';
+import { addTimer } from 'reducer/reducer';
 import UserInput from 'components/UserInput/UserInput';
 
 export default function UserForm() {
 	const [isInputReset, setIsInputReset] = useState(false);
-	const dispatch = useDispatch();
+	const { dispatch } = useTimers();
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const time = convertToSeconds(
@@ -17,13 +17,12 @@ export default function UserForm() {
 			e.target.seconds.value
 		);
 		time &&
-			dispatch({
-				type: ACTIONS.ADD_TIMER,
-				payload: {
+			dispatch(
+				addTimer({
 					name: e.target.timer.value,
 					time
-				}
-			});
+				})
+			);
 		setIsInputReset(true);
 	};
 
