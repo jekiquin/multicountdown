@@ -8,7 +8,7 @@ export const ATTRIBUTES = [
 	},
 	{
 		id: 'hours',
-		maxNumber: 9999,
+		maxNumber: 99,
 		maxLength: null,
 		type: 'number',
 		defaultValue: '0'

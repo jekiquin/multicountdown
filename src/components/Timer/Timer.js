@@ -46,17 +46,21 @@ export default function Timer({ timer }) {
 
 	const playButton = isActive ? 'Pause' : 'Play';
 	const bgColor = isActive ? 'bg-green-100' : 'bg-gray-100';
+	const orderStyle = isActive ? { order: currentTime } : null;
+	console.log(currentTime);
 
 	return (
 		<div
-			className={`w-11/12 max-w-2xl container mx-auto flex justify-between order-last p-4 border rounded-xl ${bgColor}`}
-			style={{ order: currentTime }}>
+			className={`w-11/12 max-w-2xl container mx-auto flex justify-between order-last p-4 border rounded-xl order-last ${bgColor}`}
+			style={orderStyle}>
 			<div>
 				<h2>{timer.name}</h2>
-				<p>{timeFormatFromSeconds(currentTime)}</p>
+				<p>
+					{timeFormatFromSeconds(currentTime)} | {timeFormatFromSeconds(timer.time)}
+				</p>
 			</div>
 			<div>
-				<Button label={playButton} handleClick={handlePlay} />
+				<Button label={playButton} handleClick={handlePlay} disabled={!currentTime} />
 				<Button label="Reset" handleClick={handleReset} />
 				<Button label="Delete" handleClick={handleDelete} />
 			</div>
